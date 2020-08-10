@@ -11,7 +11,6 @@ class App : Application() {
   companion object {
     lateinit var component: AppComponent
     lateinit var app: App
-
   }
 
   override fun onCreate() {
@@ -19,5 +18,4 @@ class App : Application() {
     app = this
     component = DaggerAppComponent.builder().build()
   }
-
 }

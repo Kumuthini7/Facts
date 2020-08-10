@@ -4,6 +4,7 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
+import android.widget.Toast
 
 /**
  * Created by Kumuthini.N on 08-08-2020
@@ -35,3 +36,8 @@ fun isNetworkAvailable(context: Context?): Boolean {
     }
     return false
 }
+
+fun showToast(context: Context, message: String) {
+    Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+}
+

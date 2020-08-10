@@ -1,5 +1,6 @@
 package com.example.facts.dagger
 
+import com.example.facts.ui.FactsFragment
 import dagger.Component
 import javax.inject.Singleton
 
@@ -14,6 +15,6 @@ import javax.inject.Singleton
         RepositoryModule::class]
 )
 interface AppComponent {
-
+    fun inject(factsFragment: FactsFragment)
 }
 
