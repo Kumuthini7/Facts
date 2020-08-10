@@ -22,6 +22,6 @@ class RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideFactsDao(): FactsDao = FactsDatabase.db_instance.FactsDao
+    fun provideFactsDao(): FactsDao = FactsDatabase.db_instance.factsDao
 }
 

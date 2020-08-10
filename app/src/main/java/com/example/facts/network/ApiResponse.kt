@@ -8,9 +8,9 @@ import java.util.regex.Pattern
  * Created by Kumuthini.N on 08-08-2020
  */
 class ApiResponse<T> {
-    val code: Int
+    private val code: Int
     val body: T?
-    val error: Throwable?
+    private val error: Throwable?
     private val links: MutableMap<String, String>
 
     constructor(throwable: Throwable) {

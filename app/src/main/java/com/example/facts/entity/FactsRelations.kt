@@ -9,7 +9,7 @@ class FactsRelations {
 
     @Embedded
     @SerializedName("Facts")
-    var Facts: Facts? = null
+    var facts: Facts? = null
 
     @Relation(parentColumn = "id", entityColumn = "factsId", entity = RowsItem::class)
     @SerializedName("mRowsItem")

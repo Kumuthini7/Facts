@@ -28,6 +28,9 @@ class FactsAdapter() : RecyclerView.Adapter<FactsAdapter.ViewHolder>() {
         return ViewHolder(view)
     }
 
+    /**
+     * bind title, description and image if data is available
+     */
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = features?.get(position)
         holder.type.text = item?.title
@@ -56,6 +59,10 @@ class FactsAdapter() : RecyclerView.Adapter<FactsAdapter.ViewHolder>() {
 
     override fun getItemCount(): Int = features?.size ?: 0
 
+    /**
+     * get updated values from [FactsFragment]
+     * filter values only if it has row information ie) combination of title, description and image should not be empty
+     */
     fun update(
         context: Context,
         it1: List<RowsItem?>

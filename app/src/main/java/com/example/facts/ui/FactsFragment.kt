@@ -1,6 +1,7 @@
 package com.example.facts.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -53,7 +54,7 @@ class FactsFragment : Fragment() {
         view.rView.adapter = adapter
 
         val dividerItemDecoration =
-            androidx.recyclerview.widget.DividerItemDecoration(activity, mLayoutManager.orientation)
+            androidx.recyclerview.widget.DividerItemDecoration(activity, 0)
         view.rView.addItemDecoration(dividerItemDecoration)
         return view
     }
@@ -72,28 +73,35 @@ class FactsFragment : Fragment() {
         getFacts()
     }
 
+    /**
+     * Update values to adapter
+     */
     private fun getFacts() {
         viewModel.getFacts().observe(viewLifecycleOwner, Observer {
             when (it.status) {
                 Status.LOADING -> {
-
+                    Log.i("Load", "Loading")
                 }
                 Status.SUCCESS -> {
-                    ( activity as FactsActivity).supportActionBar?.title = it.data?.Facts?.title
+                    (activity as FactsActivity).supportActionBar?.title = it.data?.facts?.title
 
                     swipeRefreshLayout.isRefreshing = false
                     it?.data?.mRowsItem?.let {
                         adapter.update(this.requireContext(), it)
                     } ?: run {
-                        if(isNetworkAvailable(this.requireContext())){
-                            showToast(this.requireContext(),resources.getString(R.string.no_data_available))
-                        } else {
-                            showToast(this.requireContext(),resources.getString(R.string.check_internet))
+                        if (!isNetworkAvailable(this.requireContext())) {
+                            showToast(
+                                this.requireContext(),
+                                resources.getString(R.string.check_internet)
+                            )
                         }
                     }
                 }
                 Status.ERROR -> {
-                    showToast(this.requireContext(),resources.getString(R.string.something_went_wrong))
+                    showToast(
+                        this.requireContext(),
+                        resources.getString(R.string.something_went_wrong)
+                    )
                 }
             }
         })

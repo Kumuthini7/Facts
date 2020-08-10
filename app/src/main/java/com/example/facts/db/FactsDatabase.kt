@@ -14,7 +14,7 @@ import com.example.facts.entity.RowsItem
 @Database(entities = arrayOf(Facts::class, RowsItem::class), version = 1, exportSchema = false)
 abstract class FactsDatabase : RoomDatabase() {
 
-    abstract val FactsDao: FactsDao
+    abstract val factsDao: FactsDao
 
     companion object {
         val db_instance: FactsDatabase by lazy {
